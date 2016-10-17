@@ -1,0 +1,69 @@
+[System]
+Name='MRFL_rev33'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=2
+NumRules=16
+AndMethod='min'
+OrMethod='max'
+ImpMethod='prod'
+AggMethod='probor'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Distancia'
+Range=[0 5]
+NumMFs=4
+MF1='Lejos':'trapmf',[2 4 5 10]
+MF2='Intermedio':'trimf',[0.5 2 4]
+MF3='Cerca':'trimf',[0.04 0.5 2]
+MF4='MuyCerca':'trimf',[0 0 0.5]
+
+[Input2]
+Name='Orientacion'
+Range=[-180 180]
+NumMFs=5
+MF1='HaciaDER':'gaussmf',[60 -170]
+MF2='Frente':'gaussmf',[23 0]
+MF3='HaciaIZQ':'gaussmf',[60 175]
+MF4='LeveDER':'gaussmf',[25 -55]
+MF5='LeveIZQ':'gaussmf',[25 55]
+
+[Output1]
+Name='VelRuedaIzq'
+Range=[0 10]
+NumMFs=5
+MF1='Lento':'trimf',[3.8 4 4.2]
+MF2='Medio':'trimf',[5.8 6 6.2]
+MF3='Rapido':'trimf',[9 10 11]
+MF4='Detener':'trimf',[0 0 0]
+MF5='MuyLento':'trimf',[0.8 1 1.2]
+
+[Output2]
+Name='VelRuedaDer'
+Range=[0 10]
+NumMFs=5
+MF1='Lento':'trimf',[3.8 4 4.2]
+MF2='Medio':'trimf',[5.8 6 6.2]
+MF3='Rapido':'trimf',[9 10 11]
+MF4='Detener':'trimf',[0 0 0]
+MF5='MuyLento':'trimf',[0.8 1 1.2]
+
+[Rules]
+4 0, 4 4 (1) : 1
+1 2, 2 2 (1) : 1
+1 4, 2 2 (0.8) : 1
+1 5, 2 2 (0.8) : 1
+1 1, 3 1 (0.8) : 1
+1 3, 1 3 (0.8) : 1
+2 2, 1 1 (1) : 1
+2 4, 1 5 (0.8) : 1
+2 5, 5 1 (0.8) : 1
+2 1, 2 5 (0.8) : 1
+2 3, 5 2 (0.8) : 1
+3 2, 5 5 (1) : 1
+3 4, 5 4 (1) : 1
+3 5, 4 5 (1) : 1
+3 1, 1 4 (1) : 1
+3 3, 4 1 (1) : 1
